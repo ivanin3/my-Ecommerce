@@ -10,12 +10,12 @@ import { Accesorios } from "./pages/Accesorios";
 import { Dianas } from "./pages/Dianas";
 import { MiCuenta } from "./pages/MiCuenta";
 import { Carrito } from "./pages/Carrito";
+import { Registro } from "./pages/Registro";
 
 function App() {
   return (
-    <div>
-      <NavBar />
-      <Routes>
+    <Routes>
+      <Route element={<NavBar />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/dardos" element={<Dardos />} />
         <Route path="/plumas" element={<Plumas />} />
@@ -26,8 +26,9 @@ function App() {
         <Route path="/dianas" element={<Dianas />} />
         <Route path="/mi-cuenta" element={<MiCuenta />} />
         <Route path="/carrito" element={<Carrito />} />
-      </Routes>
-    </div>
+        <Route path="/registro" element={<Registro />} />
+      </Route>
+    </Routes>
   );
 }
 

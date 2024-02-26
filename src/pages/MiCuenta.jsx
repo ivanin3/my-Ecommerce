@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth, firestore } from './firebase'; // Importa la instancia de autenticación de Firebase
+import { auth, firestore } from '../config/firebase';
 import { Link } from 'react-router-dom';
 
 export const MiCuenta = () => {
