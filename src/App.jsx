@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
@@ -9,27 +10,38 @@ import { Fundas } from "./pages/Fundas";
 import { Accesorios } from "./pages/Accesorios";
 import { Dianas } from "./pages/Dianas";
 import { MiCuenta } from "./pages/MiCuenta";
-import { Carrito } from "./pages/Carrito";
 import { Registro } from "./pages/Registro";
+import { IniciarSesion } from "./pages/Iniciar-sesion";
+import { Perfil } from "./pages/Perfil/MiPerfil";
+import { Carrito } from "./pages/Perfil/Carrito";
+import { MisPedidos } from "./pages/Perfil/MisPedidos";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <Routes>
-      <Route element={<NavBar />}>
+  <Route
+        element={<NavBar isAuthenticated={isAuthenticated} />}
+      >
         <Route path="/" element={<HomePage />} />
         <Route path="/dardos" element={<Dardos />} />
         <Route path="/plumas" element={<Plumas />} />
         <Route path="/cañas" element={<Cañas />} />
         <Route path="/puntas" element={<Puntas />} />
-        <Route path="/fundas-y-estuches" element={<Fundas />} />
+        <Route path="/fundas-estuches" element={<Fundas />} />
         <Route path="/accesorios" element={<Accesorios />} />
         <Route path="/dianas" element={<Dianas />} />
         <Route path="/mi-cuenta" element={<MiCuenta />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/registro" element={<Registro />} />
+        <Route path="/iniciar-sesion" element={<IniciarSesion setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/mi-perfil" element={<Perfil isAuthenticated={isAuthenticated} />} />
       </Route>
     </Routes>
   );
 }
 
 export default App;
+
+

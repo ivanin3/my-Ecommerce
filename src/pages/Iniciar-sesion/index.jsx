@@ -1,37 +1,39 @@
 import React, { useState } from "react";
 import {
   getAuth,
+  signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-export const Registro = () => {
+export const IniciarSesion = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Usar useNavigate para la redirección
+  const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleLogin = async () => {
     try {
       const authInstance = getAuth();
-      await createUserWithEmailAndPassword(authInstance, email, password);
-      console.log("Usuario registrado exitosamente.");
-      navigate("/iniciar-sesion");
+      await signInWithEmailAndPassword(authInstance, email, password);
+      console.log("Inicio de sesión exitoso.");
+      setIsAuthenticated(true); // Actualizar el estado de autenticación
+      navigate("/"); // Redirigir a la página principal
     } catch (error) {
-      console.error("Error al registrar el usuario:", error);
+      console.error("Error al iniciar sesión:", error);
     }
   };
 
-  const handleGoogleRegister = async () => {
+  const handleGoogleLogin = async () => {
     try {
       const authInstance = getAuth();
       const provider = new GoogleAuthProvider();
       await signInWithPopup(authInstance, provider);
-      console.log("Usuario registrado con Google.");
-      navigate("/iniciar-sesion"); // Redirigir a la página de inicio de sesión después del registro exitoso
+      console.log("Inicio de sesión con Google exitoso.");
+      setIsAuthenticated(true); // Actualizar el estado de autenticación
+      navigate("/"); // Redirigir a la página principal
     } catch (error) {
-      console.error("Error al registrar el usuario con Google:", error);
+      console.error("Error al iniciar sesión con Google:", error);
     }
   };
 
@@ -49,10 +51,12 @@ export const Registro = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleRegister}>
-        Registrarse con correo y contraseña
+      <button onClick={handleLogin}>
+        Iniciar sesión con correo y contraseña
       </button>
-      <button onClick={handleGoogleRegister}>Registrarse con Google</button>
+      <button onClick={handleGoogleLogin}>Iniciar sesión con Google</button>
     </div>
   );
 };
+
+

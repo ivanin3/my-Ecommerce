@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const pages = [
   { name: "Dardos", link: "/dardos" },
@@ -22,12 +22,16 @@ const pages = [
   { name: "Accesorios", link: "/accesorios" },
   { name: "Dianas", link: "/dianas" },
 ];
-const settings = ["Perfil", "Mis pedidos", "Carrito", "Cerrar sesión"];
+const settings = [
+  { name: "Perfil", link: "/mi-perfil" },
+  { name: "Mis Pedidos", link: "/mis-pedidos" },
+  { name: "Carrito", link: "/carrito" },
+  { name: "Cerrar sesión", link: "/iniciar-sesion" },
+];
 
-export const NavBar = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+export const NavBar = ({ isAuthenticated }) => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,6 +46,10 @@ export const NavBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    // Implementa la lógica de cierre de sesión aquí si es necesario
   };
 
   return (
@@ -89,9 +97,9 @@ export const NavBar = () => {
               >
                 {pages.map((page) => (
                   <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                    <a href={page.link} style={{ textDecoration: "none" }}>
+                    <Link to={page.link} style={{ textDecoration: "none" }}>
                       <Typography textAlign="center">{page.name}</Typography>
-                    </a>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -103,7 +111,8 @@ export const NavBar = () => {
                   {pages.map((page) => (
                     <Button
                       key={page.name}
-                      href={page.link}
+                      component={Link}
+                      to={page.link}
                       onClick={handleCloseNavMenu}
                       sx={{
                         my: 2,
@@ -146,8 +155,8 @@ export const NavBar = () => {
                     onClose={handleCloseUserMenu}
                   >
                     {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
+                      <MenuItem key={setting.link} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting.name}</Typography>
                       </MenuItem>
                     ))}
                   </Menu>
@@ -162,14 +171,16 @@ export const NavBar = () => {
                 }}
               >
                 <Button
-                  href="/iniciar-sesion"
+                  component={Link}
+                  to="/iniciar-sesion"
                   color="inherit"
                   sx={{ textTransform: "none", fontSize: "12px" }}
                 >
                   Iniciar Sesión
                 </Button>
                 <Button
-                  href="/registro"
+                  component={Link}
+                  to="/registro"
                   color="inherit"
                   sx={{ textTransform: "none", fontSize: "12px" }}
                 >
