@@ -17,8 +17,8 @@ export const IniciarSesion = ({ setIsAuthenticated }) => {
       const authInstance = getAuth();
       await signInWithEmailAndPassword(authInstance, email, password);
       console.log("Inicio de sesión exitoso.");
-      setIsAuthenticated(true); // Actualizar el estado de autenticación
-      navigate("/"); // Redirigir a la página principal
+      setIsAuthenticated(true); 
+      navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -30,8 +30,8 @@ export const IniciarSesion = ({ setIsAuthenticated }) => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(authInstance, provider);
       console.log("Inicio de sesión con Google exitoso.");
-      setIsAuthenticated(true); // Actualizar el estado de autenticación
-      navigate("/"); // Redirigir a la página principal
+      setIsAuthenticated(true);
+      navigate("/"); 
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
     }

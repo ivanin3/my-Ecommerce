@@ -15,7 +15,7 @@ export const Accesorios = () => {
       >
             <Paper elevation={20} sx={{ p: 2 }}>
                 <Typography variant="h2" gutterBottom>
-                    Home Page
+                    ACCESORIOS
                 </Typography>
             </Paper>
             <Outlet />

@@ -48,16 +48,17 @@ export const NavBar = ({ isAuthenticated }) => {
     setAnchorElUser(null);
   };
 
-  const handleLogout = () => {
-    // Implementa la lógica de cierre de sesión aquí si es necesario
-  };
+  {
+    /*} const handleLogout = () => {
+  };*/
+  }
 
   return (
     <>
       <AppBar sx={{ backgroundColor: "black" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <a href="/">
+            <Link to="/">
               <img
                 src="target.png"
                 alt="logo"
@@ -65,7 +66,7 @@ export const NavBar = ({ isAuthenticated }) => {
                 height="30px"
                 style={{ marginRight: "120px", filter: "invert(1)" }}
               />
-            </a>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -155,8 +156,11 @@ export const NavBar = ({ isAuthenticated }) => {
                     onClose={handleCloseUserMenu}
                   >
                     {settings.map((setting) => (
-                      <MenuItem key={setting.link} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting.name}</Typography>
+                      <MenuItem
+                        key={setting.link}
+                        onClick={handleCloseUserMenu}
+                      >
+                        <Link to={setting.link}>{setting.name}</Link>
                       </MenuItem>
                     ))}
                   </Menu>

@@ -6,7 +6,7 @@ export const Carrito = ({ isAuthenticated, carrito }) => {
 
   if (!isAuthenticated) {
     navigate("/iniciar-sesion");
-    return null; // Evitar renderizar cualquier contenido si no está autenticado
+    return null;
   }
 
   return (
@@ -15,7 +15,6 @@ export const Carrito = ({ isAuthenticated, carrito }) => {
       <ul>
         {carrito.map((producto) => (
           <li key={producto.id}>
-            {/* Detalles del producto en el carrito */}
           </li>
         ))}
       </ul>

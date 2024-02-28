@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const Registro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Usar useNavigate para la redirección
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -29,7 +29,7 @@ export const Registro = () => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(authInstance, provider);
       console.log("Usuario registrado con Google.");
-      navigate("/iniciar-sesion"); // Redirigir a la página de inicio de sesión después del registro exitoso
+      navigate("/iniciar-sesion");
     } catch (error) {
       console.error("Error al registrar el usuario con Google:", error);
     }
