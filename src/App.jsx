@@ -9,7 +9,6 @@ import { Puntas } from "./pages/Puntas";
 import { Fundas } from "./pages/Fundas";
 import { Accesorios } from "./pages/Accesorios";
 import { Dianas } from "./pages/Dianas";
-import { MiCuenta } from "./pages/MiCuenta";
 import { Registro } from "./pages/Registro";
 import { IniciarSesion } from "./pages/Iniciar-sesion";
 import { Perfil } from "./pages/Perfil/MiPerfil";
@@ -32,7 +31,6 @@ function App() {
         <Route path="/fundas-estuches" element={<Fundas />} />
         <Route path="/accesorios" element={<Accesorios />} />
         <Route path="/dianas" element={<Dianas />} />
-        <Route path="/mi-cuenta" element={<MiCuenta />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/iniciar-sesion" element={<IniciarSesion setIsAuthenticated={setIsAuthenticated} />} />

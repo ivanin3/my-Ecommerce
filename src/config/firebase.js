@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyADFTkBaynamYNj5LeXNYR5cNO16LWdx8I",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "my-ecommerce-bd703.firebaseapp.com",
   projectId: "my-ecommerce-bd703",
   storageBucket: "my-ecommerce-bd703.appspot.com",
@@ -11,9 +12,14 @@ const firebaseConfig = {
   appId: "1:639022023322:web:d8e06e0a5153861c4ed523"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const firestore = getFirestore(app);
 
-export { auth, firestore };
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
+
+export {
+  db,
+  storage,
+  auth,
+}
