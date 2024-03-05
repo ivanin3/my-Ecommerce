@@ -11,7 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
+import { signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const pages = [
   { name: "Dardos", link: "/dardos" },
@@ -22,16 +25,12 @@ const pages = [
   { name: "Accesorios", link: "/accesorios" },
   { name: "Dianas", link: "/dianas" },
 ];
-const settings = [
-  { name: "Perfil", link: "/mi-perfil" },
-  { name: "Mis Pedidos", link: "/mis-pedidos" },
-  { name: "Carrito", link: "/carrito" },
-  { name: "Cerrar sesión", link: "/iniciar-sesion" },
-];
 
-export const NavBar = ({ isAuthenticated }) => {
+export const NavBar = () => {
+  const auth = useAuth();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -48,10 +47,25 @@ export const NavBar = ({ isAuthenticated }) => {
     setAnchorElUser(null);
   };
 
-  {
-    /*} const handleLogout = () => {
-  };*/
-  }
+  const handleLogout = () => {
+    const logoutAuth = getAuth();
+    signOut(logoutAuth)
+      .then(() => {
+        console.log("Sign-out successful");
+        auth.setCurrentUser(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
+  const settings = [
+    { id: 1, name: "Perfil", link: "/mi-perfil" },
+    { id: 2, name: "Mis Pedidos", link: "/mis-pedidos" },
+    { id: 3, name: "Carrito", link: "/carrito" },
+    { id: 4, name: "Cerrar sesión", onClick: handleLogout },
+  ];
 
   return (
     <>
@@ -106,7 +120,7 @@ export const NavBar = ({ isAuthenticated }) => {
               </Menu>
             </Box>
 
-            {isAuthenticated ? (
+            {auth.currentUser ? (
               <>
                 <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                   {pages.map((page) => (
@@ -157,8 +171,8 @@ export const NavBar = ({ isAuthenticated }) => {
                   >
                     {settings.map((setting) => (
                       <MenuItem
-                        key={setting.link}
-                        onClick={handleCloseUserMenu}
+                        key={setting.id}
+                        onClick={setting.onClick} // Aquí
                       >
                         <Link to={setting.link}>{setting.name}</Link>
                       </MenuItem>
