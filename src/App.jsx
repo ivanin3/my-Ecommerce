@@ -15,6 +15,8 @@ import { Perfil } from "./pages/Perfil/MiPerfil";
 import { Carrito } from "./pages/Perfil/Carrito";
 import { MisPedidos } from "./pages/Perfil/MisPedidos";
 import { useAuth } from "./context/AuthProvider";
+import Detalles from "./pages/Detalles";
+
 
 function App() {
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ function App() {
           element={<Perfil isAuthenticated={isAuthenticated} />}
         />
         <Route path="/mis-pedidos" element={<MisPedidos />} />
+        <Route path="/detalles/:nombre" element={<Detalles />} />
       </Route>
     </Routes>
   );
