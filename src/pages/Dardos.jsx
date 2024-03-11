@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Container, Typography, Paper, Select, MenuItem, Grid, Card, CardActionArea, CardContent, CardMedia, Button } from "@mui/material";
-import { useAuth } from "../../context/AuthProvider";
+import { Container, Typography, Select, MenuItem, Grid, Card, CardActionArea, CardContent, CardMedia, Button } from "@mui/material";
+import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { useProducts } from "../../hooks/useProducts";
+import { useProducts } from "../hooks/useProducts";
 
 export const Dardos = () => {
   const { useCategory } = useProducts();
@@ -12,17 +12,15 @@ export const Dardos = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  // Función para manejar el cambio en el filtro
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
 
-  // Función para filtrar los productos según el filtro seleccionado
-  const filteredProductos = productos.filter((producto) => {
+  const filteredProductos = productos.filter((productos) => {
     if (filter === "todos") {
       return true;
     } else {
-      return producto.tipo_punta === filter; 
+      return productos.tipo_punta === filter; 
     }
   });
 
@@ -31,8 +29,8 @@ export const Dardos = () => {
       <Typography variant="h2" align="center" gutterBottom>Dardos</Typography>
       <Select value={filter} onChange={handleFilterChange} fullWidth sx={{ marginBottom: 2 }}>
         <MenuItem value="todos">Todos</MenuItem>
-        <MenuItem value="acero">Dardos de acero</MenuItem>
-        <MenuItem value="plastico">Dardos de plástico</MenuItem>
+        <MenuItem value="Acero">Dardos de acero</MenuItem>
+        <MenuItem value="Plástico">Dardos de plástico</MenuItem>
       </Select>
       <Grid container spacing={2}>
         {filteredProductos.map((producto) => (
@@ -55,13 +53,6 @@ export const Dardos = () => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <Button
-                fullWidth
-                onClick={() => currentUser && navigate(`/detalles/${producto.nombre}`)}
-                sx={{ borderTop: "1px solid #ccc", mt: "auto" }}
-              >
-                Ver Detalles
-              </Button>
             </Card>
           </Grid>
         ))}

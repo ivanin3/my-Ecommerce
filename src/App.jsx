@@ -2,9 +2,7 @@ import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { NavBar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
-import { Dardos } from "./pages/PaginasDardos/Dardos";
-import { DardosAcero } from "./pages/PaginasDardos/DardosAcero";
-import { DardosPlastico } from "./pages/PaginasDardos/DardosPlastico";
+import { Dardos } from "./pages/Dardos";
 import { Plumas } from "./pages/Plumas";
 import { Cañas } from "./pages/Cañas";
 import { Puntas } from "./pages/Puntas";
@@ -29,8 +27,6 @@ function App() {
       <Route element={<NavBar isAuthenticated={isAuthenticated} />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/dardos" element={<Dardos />} />
-        <Route path="/dardos/acero" element={<DardosAcero />} />
-        <Route path="/dardos/plastico" element={<DardosPlastico />} />
         <Route path="/plumas" element={<Plumas />} />
         <Route path="/cañas" element={<Cañas />} />
         <Route path="/puntas" element={<Puntas />} />

@@ -1,39 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import React from "react";
+import { useAuth } from "../../context/AuthProvider";
+import { Container, Typography } from "@mui/material";
 
 export const Perfil = () => {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const { displayName, email, photoURL } = user;
-        setUserData({ displayName, email, photoURL });
-      } else {
-        setUserData(null);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const { currentUser } = useAuth();
 
   return (
-    <div>
-      <h1>Perfil</h1>
-      {userData ? (
+    <Container maxWidth="md" sx={{ marginTop: "80px", minHeight: "calc(100vh - 80px)", textAlign: "center" }}>
+      <Typography variant="h2" gutterBottom>Mi Perfil</Typography>
+      {currentUser ? (
         <div>
-          <p>Nombre de usuario: {userData.displayName}</p>
-          <p>Email: {userData.email}</p>
-          {userData.photoURL && (
-            <img src={userData.photoURL} alt="Foto de perfil" />
-          )}
+          <Typography variant="h4" gutterBottom>Usuario: {currentUser.email}</Typography>
         </div>
       ) : (
-        <p>Cargando datos de usuario...</p>
+        <Typography variant="body1" gutterBottom>No hay usuario autenticado</Typography>
       )}
-      <Link to="/">Inicio</Link>
-    </div>
+    </Container>
   );
 };
+
+
+
