@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Container, Typography, Select, MenuItem, Grid, Card, CardActionArea, CardContent, CardMedia, Button } from "@mui/material";
+import { Container, Typography, Select, MenuItem, Grid, Card, CardActionArea, CardContent, CardMedia } from "@mui/material";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";

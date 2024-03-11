@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import { CardMedia, Container, Typography, Button, Rating, Snackbar } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
+import { MarketProvider } from "../context/MarketProvider";
 
 export default function Detalles() {
   const { nombre } = useParams();
   const { useProduct } = useProducts();
   const product = useProduct(nombre);
 
-  const [cartItems, setCartItems] = useState([]);
+ const { shoppingCart, setShoppingCart } = useContext(MarketProvider)
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleAddToCart = () => {
-    setCartItems([...cartItems, product]);
-    setSnackbarOpen(true);
+ setShoppingCart([...shoppingCart, product]);
   };
 
   const handleCloseSnackbar = () => {

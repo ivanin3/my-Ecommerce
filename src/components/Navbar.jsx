@@ -172,7 +172,7 @@ export const NavBar = () => {
                     {settings.map((setting) => (
                       <MenuItem
                         key={setting.id}
-                        onClick={setting.onClick} // Aquí
+                        onClick={setting.onClick}
                       >
                         <Link to={setting.link}>{setting.name}</Link>
                       </MenuItem>

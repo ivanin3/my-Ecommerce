@@ -16,7 +16,7 @@ import { Carrito } from "./pages/Perfil/Carrito";
 import { MisPedidos } from "./pages/Perfil/MisPedidos";
 import { useAuth } from "./context/AuthProvider";
 import Detalles from "./pages/Detalles";
-
+import { MarketProvider } from "./context/MarketProvider";
 
 function App() {
   const navigate = useNavigate();
@@ -33,7 +33,6 @@ function App() {
         <Route path="/fundas-estuches" element={<Fundas />} />
         <Route path="/accesorios" element={<Accesorios />} />
         <Route path="/dianas" element={<Dianas />} />
-        <Route path="/carrito" element={<Carrito />} />
         <Route path="/registro" element={<Registro />} />
         <Route
           path="/iniciar-sesion"
@@ -44,7 +43,12 @@ function App() {
           element={<Perfil isAuthenticated={isAuthenticated} />}
         />
         <Route path="/mis-pedidos" element={<MisPedidos />} />
-        <Route path="/detalles/:nombre" element={<Detalles />} />
+
+        <MarketProvider>
+          <Route path="/detalles/:nombre" element={<Detalles />} />
+
+          <Route path="/carrito" element={<Carrito />} />
+        </MarketProvider>
       </Route>
     </Routes>
   );

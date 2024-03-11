@@ -1,25 +1,37 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
+import { Container, Paper, Typography } from "@mui/material";
 
-export const Carrito = ({ isAuthenticated, carrito }) => {
+export const Carrito = () => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const { shoppingCart, setShoppingCart } = useContext(MarketProvider)
+  
 
-  if (!isAuthenticated) {
+  if (!currentUser) {
     navigate("/iniciar-sesion");
     return null;
   }
 
-  return (
-    <div>
-      <h2>Carrito de compras</h2>
-      <ul>
-        {carrito.map((producto) => (
-          <li key={producto.id}>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+      <Container
+      maxWidth="md"
+      sx={{
+        marginTop: "80px",
+        textAlign: "center",
+        backgroundColor: "#E3F2FD",
+        minHeight: "calc(100vh - 80px)",
+        padding: "20px",
+      }}
+    >
+          <Paper elevation={20} sx={{ p: 2 }}>
+              <Typography variant="h2" gutterBottom>
+                  Carrito
+              </Typography>
+              <p>{shoppingCart.toString()}</p>
+          </Paper>
+          <Outlet />
+      </Container>
+  )
 };
-
-
