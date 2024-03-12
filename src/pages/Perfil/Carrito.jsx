@@ -2,11 +2,12 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import { Container, Paper, Typography } from "@mui/material";
+import { MarketContext } from "../../context/MarketProvider";
 
 export const Carrito = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const { shoppingCart, setShoppingCart } = useContext(MarketProvider)
+  const { shoppingCart } = useContext(MarketContext);
   
 
   if (!currentUser) {

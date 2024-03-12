@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { Dardos } from "./pages/Dardos";
@@ -19,7 +19,6 @@ import Detalles from "./pages/Detalles";
 import { MarketProvider } from "./context/MarketProvider";
 
 function App() {
-  const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   return (
@@ -43,10 +42,8 @@ function App() {
           element={<Perfil isAuthenticated={isAuthenticated} />}
         />
         <Route path="/mis-pedidos" element={<MisPedidos />} />
-
         <MarketProvider>
           <Route path="/detalles/:nombre" element={<Detalles />} />
-
           <Route path="/carrito" element={<Carrito />} />
         </MarketProvider>
       </Route>

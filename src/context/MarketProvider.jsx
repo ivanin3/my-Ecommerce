@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "./AuthProvider";
 
-const MarketContext = React.createContext();
-
-
+export const MarketContext = React.createContext();
 
 export const MarketProvider = ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState([]);
 
+  const authContext = useContext(AuthContext);
 
   return (
-    <AuthContext.Provider
-      value={{ shoppingCart, setShoppingCart }}
-    >
+    <AuthContext.Provider value={{ shoppingCart, setShoppingCart }}>
       {children}
     </AuthContext.Provider>
   );
