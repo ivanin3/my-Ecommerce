@@ -9,8 +9,8 @@ export const MarketProvider = ({ children }) => {
   const authContext = useContext(AuthContext);
 
   return (
-    <AuthContext.Provider value={{ shoppingCart, setShoppingCart }}>
+    <MarketContext.Provider value={{ shoppingCart, setShoppingCart }}>
       {children}
-    </AuthContext.Provider>
+    </MarketContext.Provider>
   );
 };

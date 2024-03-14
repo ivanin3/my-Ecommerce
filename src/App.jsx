@@ -22,6 +22,7 @@ function App() {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   return (
+    <MarketProvider>
     <Routes>
       <Route element={<NavBar isAuthenticated={isAuthenticated} />}>
         <Route path="/" element={<HomePage />} />
@@ -42,12 +43,13 @@ function App() {
           element={<Perfil isAuthenticated={isAuthenticated} />}
         />
         <Route path="/mis-pedidos" element={<MisPedidos />} />
-        <MarketProvider>
+        
           <Route path="/detalles/:nombre" element={<Detalles />} />
           <Route path="/carrito" element={<Carrito />} />
-        </MarketProvider>
+        
       </Route>
     </Routes>
+    </MarketProvider>
   );
 }
 

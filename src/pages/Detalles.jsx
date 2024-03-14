@@ -1,20 +1,21 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProducts } from "../hooks/useProducts";
-import { CardMedia, Container, Typography, Button, Rating, Snackbar } from "@mui/material";
+import { Container, Typography, Button, Rating, Snackbar, CardMedia } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
 import { MarketContext } from "../context/MarketProvider";
+import { useProducts } from "../hooks/useProducts";
 
 export default function Detalles() {
   const { nombre } = useParams();
   const { useProduct } = useProducts();
   const product = useProduct(nombre);
 
- const { shoppingCart, setShoppingCart } = useContext(MarketContext);
+  const { shoppingCart, setShoppingCart } = useContext(MarketContext);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleAddToCart = () => {
- setShoppingCart([...shoppingCart, product]);
+    setShoppingCart([...shoppingCart, product]);
+    setSnackbarOpen(true);
   };
 
   const handleCloseSnackbar = () => {
@@ -23,16 +24,7 @@ export default function Detalles() {
 
   return (
     <>
-      <Container
-        maxWidth="md"
-        sx={{
-          marginTop: "80px",
-          textAlign: "center",
-          backgroundColor: "#E3F2FD",
-          minHeight: "calc(100vh - 80px)",
-          padding: "20px",
-        }}
-      >
+      <Container maxWidth="md" sx={{ marginTop: "80px", textAlign: "center" }}>
         <Typography variant="h4" sx={{ marginBottom: "20px" }}>{product?.nombre}</Typography>
         <CardMedia
           component="img"
