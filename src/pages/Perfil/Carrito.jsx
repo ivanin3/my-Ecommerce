@@ -34,13 +34,9 @@ export const Carrito = () => {
   };
 
   const handleCompra = () => {
-    // Lógica para procesar la compra
-    // Esto puede incluir el envío de los productos a un servidor, etc.
-    // Aquí simplemente vaciamos el carrito
     setShoppingCart([]);
     setSnackbarMessage("Compra realizada con éxito");
     setSnackbarOpen(true);
-    // También podrías redirigir al usuario a una página de confirmación de compra
   };
 
   const calcularTotal = () => {

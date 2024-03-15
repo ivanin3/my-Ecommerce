@@ -2,12 +2,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import { Navigate } from "react-router-dom";
 
-function RequireAuth() {
+function ProtectedRoute() {
   let auth = useAuth();
   let location = useLocation();
-
-  if (!auth.user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!auth.isAuthenticated()) {
+    return <Navigate to="/iniciar-sesion" state={{ from: location }} replace />;
   }
 
   return <Outlet />;
