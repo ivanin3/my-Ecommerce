@@ -32,14 +32,15 @@ function App() {
             path="/iniciar-sesion"
             element={<IniciarSesion setIsAuthenticated={setIsAuthenticated} />}
           />
+
+          <Route path="/dardos" element={<Dardos />} />
+          <Route path="/plumas" element={<Plumas />} />
+          <Route path="/cañas" element={<Cañas />} />
+          <Route path="/puntas" element={<Puntas />} />
+          <Route path="/fundas-estuches" element={<Fundas />} />
+          <Route path="/accesorios" element={<Accesorios />} />
+          <Route path="/dianas" element={<Dianas />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dardos" element={<Dardos />} />
-            <Route path="/plumas" element={<Plumas />} />
-            <Route path="/cañas" element={<Cañas />} />
-            <Route path="/puntas" element={<Puntas />} />
-            <Route path="/fundas-estuches" element={<Fundas />} />
-            <Route path="/accesorios" element={<Accesorios />} />
-            <Route path="/dianas" element={<Dianas />} />
             <Route
               path="/mi-perfil"
               element={<Perfil isAuthenticated={isAuthenticated} />}

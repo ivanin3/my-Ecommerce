@@ -19,6 +19,7 @@ export const Carrito = () => {
     setSnackbarOpen(false);
   };
 
+  // Eliminar producto del carrito
   const handleRemoveFromCart = (index) => {
     const newCart = [...shoppingCart];
     newCart.splice(index, 1);
@@ -27,18 +28,22 @@ export const Carrito = () => {
     setSnackbarOpen(true);
   };
 
+  // Vaciar el carrito
   const handleVaciarCarrito = () => {
     setShoppingCart([]);
     setSnackbarMessage("Carrito vaciado");
     setSnackbarOpen(true);
   };
 
+
+  // Realizar la compra y vaciar el carrito
   const handleCompra = () => {
     setShoppingCart([]);
     setSnackbarMessage("Compra realizada con éxito");
     setSnackbarOpen(true);
   };
 
+  // Calcular el total de la compra
   const calcularTotal = () => {
     return shoppingCart.reduce((total, item) => total + item.precio, 0).toFixed(2);
   };
@@ -64,7 +69,7 @@ export const Carrito = () => {
                   <TableRow>
                     <TableCell>Producto</TableCell>
                     <TableCell>Precio</TableCell>
-                    <TableCell>Acciones</TableCell>
+                    <TableCell>Eliminar</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
