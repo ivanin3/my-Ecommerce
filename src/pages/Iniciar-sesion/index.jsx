@@ -79,7 +79,7 @@ export default function IniciarSesion({ setIsAuthenticated }) {
     <Box display="flex" flexDirection="column" gap={2}>
       <TextField
         fullWidth
-        margin="none" // Modificamos margin a 'none' para eliminar el espacio adicional
+        margin="none" 
         label="Email"
         type="email"
         {...register("email", { required: true })}
@@ -88,7 +88,7 @@ export default function IniciarSesion({ setIsAuthenticated }) {
       />
       <TextField
         fullWidth
-        margin="none" // Modificamos margin a 'none' para eliminar el espacio adicional
+        margin="none"
         label="Contraseña"
         type="password"
         {...register("password", { required: true })}

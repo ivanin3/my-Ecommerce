@@ -16,6 +16,7 @@ import { Carrito } from "./pages/Perfil/Carrito";
 import { MisPedidos } from "./pages/Perfil/MisPedidos";
 import { useAuth } from "./context/AuthProvider";
 import Detalles from "./pages/Detalles";
+import { ResumenCompra } from "./pages/ResumenCompra";
 import { MarketProvider } from "./context/MarketProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -46,7 +47,7 @@ function App() {
               element={<Perfil isAuthenticated={isAuthenticated} />}
             />
             <Route path="/mis-pedidos" element={<MisPedidos />} />
-
+            <Route path="/resumen-compra" element={<ResumenCompra />} />
             <Route path="/detalles/:nombre" element={<Detalles />} />
             <Route path="/carrito" element={<Carrito />} />
           </Route>

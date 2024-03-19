@@ -38,9 +38,7 @@ export const Carrito = () => {
 
   // Realizar la compra y vaciar el carrito
   const handleCompra = () => {
-    setShoppingCart([]);
-    setSnackbarMessage("Compra realizada con éxito");
-    setSnackbarOpen(true);
+    navigate("/resumen-compra");
   };
 
   // Calcular el total de la compra
