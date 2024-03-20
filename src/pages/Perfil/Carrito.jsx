@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
-import { Container, Paper, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CardMedia, Button, Snackbar } from "@mui/material";
+import { Container, Paper, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CardMedia, Button, Snackbar, Alert } from "@mui/material";
 import { MarketContext } from "../../context/MarketProvider";
 
 export const Carrito = () => {
@@ -35,8 +35,6 @@ export const Carrito = () => {
     setSnackbarOpen(true);
   };
 
-
-  // Realizar la compra y vaciar el carrito
   const handleCompra = () => {
     navigate("/resumen-compra");
   };
@@ -108,13 +106,15 @@ export const Carrito = () => {
         )}
       </Paper>
       <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleSnackbarClose}
         message={snackbarMessage}
-        key={'top' + 'right'}
-      />
+      >
+        <Alert onClose={handleSnackbarClose} severity="error" variant="outlined"  sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
       <Outlet />
     </Container>
   );

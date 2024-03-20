@@ -8,6 +8,11 @@ import {
   ListItem,
   ListItemText,
   CardMedia,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Grid,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MarketContext } from "../context/MarketProvider";
@@ -26,6 +31,7 @@ export const ResumenCompra = () => {
     ciudad: "",
   });
   const [camposIncompletos, setCamposIncompletos] = useState(false);
+  const [metodoPago, setMetodoPago] = useState(""); // Aquí se almacenará el método de pago seleccionado
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -42,7 +48,15 @@ export const ResumenCompra = () => {
     if (incompletos.length > 0) {
       setCamposIncompletos(true);
     } else {
-      navigate("/metodo-pago");
+      // Dependiendo del método de pago seleccionado, dirigimos al usuario a la pasarela de pago correspondiente
+      if (metodoPago === "paypal") {
+        navigate("/pago-paypal");
+      } else if (metodoPago === "tarjeta") {
+        navigate("/pago-tarjeta");
+      } else {
+        // Si no se ha seleccionado ningún método de pago, no hacemos nada
+        console.log("Por favor, seleccione un método de pago.");
+      }
     }
   };
 
@@ -105,6 +119,45 @@ export const ResumenCompra = () => {
           }
         />
       ))}
+      <Typography variant="h4" gutterBottom sx={{ marginTop: "20px" }}>
+        Método de Pago
+      </Typography>
+      <FormControl component="fieldset">
+        <RadioGroup
+          row
+          aria-label="method"
+          name="method"
+          value={metodoPago}
+          onChange={(event) => setMetodoPago(event.target.value)}
+        >
+          <Grid container spacing={2}>
+            <Grid item>
+              <FormControlLabel
+                value="paypal"
+                control={<Radio />}
+                label={<img src="/paypal.png" alt="PayPal" width="100" />}
+              />
+            </Grid>
+            <Grid item>
+              <FormControlLabel
+                value="tarjeta"
+                control={<Radio />}
+                label={
+                  <>
+                    <img src="/tarjeta-visa.png" alt="Tarjeta" width="60" />
+                    <img
+                      src="/tarjeta-mastercard.png"
+                      alt="Tarjeta"
+                      width="60"
+                    />
+                  </>
+                }
+              />
+            </Grid>
+          </Grid>
+        </RadioGroup>
+      </FormControl>
+      <br />
       <Button
         variant="outlined"
         onClick={handleVolver}

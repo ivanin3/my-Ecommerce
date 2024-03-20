@@ -17,6 +17,7 @@ import { MisPedidos } from "./pages/Perfil/MisPedidos";
 import { useAuth } from "./context/AuthProvider";
 import Detalles from "./pages/Detalles";
 import { ResumenCompra } from "./pages/ResumenCompra";
+import PagoTarjeta from "./pages/PagoTarjeta"; // Importa el componente PagoTarjeta
 import { MarketProvider } from "./context/MarketProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/resumen-compra" element={<ResumenCompra />} />
             <Route path="/detalles/:nombre" element={<Detalles />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/pago-tarjeta" element={<PagoTarjeta />} />{" "}
           </Route>
         </Route>
       </Routes>

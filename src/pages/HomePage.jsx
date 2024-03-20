@@ -16,7 +16,8 @@ export const HomePage = () => {
   const { useProductsList } = useProducts();
   const productos = useProductsList();
   const { currentUser } = useAuth();
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const random = () => {
     const randomProductos = [];
     for (let i = 0; i < 6; i++) {
@@ -29,39 +30,30 @@ const navigate = useNavigate();
   };
 
   const randomProducts = random();
-  console.log(randomProducts);
 
   return (
     <Container
       maxWidth="md"
       sx={{
         marginTop: "80px",
-        textAlign: "center",
-        backgroundColor: "#E3F2FD",
         minHeight: "calc(100vh - 80px)",
         padding: "20px",
       }}
     >
-      <Paper elevation={20} sx={{ p: 2 }}>
-        <Typography variant="h2" gutterBottom>
-          Home Page
-        </Typography>
-      </Paper>{" "}
+      <Typography variant="h2" align="center" gutterBottom>
+        Home Page
+      </Typography>
       <Grid container spacing={2}>
         {randomProducts.map((producto) => (
           <Grid key={producto?.nombre} item xs={12} sm={6} md={4}>
-            <Card
-              sx={{ height: "100%", display: "flex", flexDirection: "column" }}
-            >
+            <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   height="300"
                   image={producto?.imagen}
                   alt={producto?.nombre}
-                  onClick={() =>
-                    currentUser && navigate(`/detalles/${producto.nombre}`)
-                  }
+                  onClick={() => currentUser && navigate(`/detalles/${producto.nombre}`)}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -77,7 +69,7 @@ const navigate = useNavigate();
         ))}
         {randomProducts.length === 0 && (
           <Typography variant="body1" align="center" sx={{ width: "100%" }}>
-            No hay productos en esta categoría o filtro seleccionado.
+            No hay productos disponibles.
           </Typography>
         )}
       </Grid>
@@ -85,3 +77,4 @@ const navigate = useNavigate();
     </Container>
   );
 };
+

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Typography, Button, Rating, Snackbar, CardMedia } from "@mui/material";
+import { Container, Typography, Button, Rating, Snackbar, CardMedia, Alert } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
 import { MarketContext } from "../context/MarketProvider";
 import { useProducts } from "../hooks/useProducts";
@@ -48,8 +48,16 @@ export default function Detalles() {
           open={snackbarOpen}
           autoHideDuration={3000}
           onClose={handleCloseSnackbar}
-          message="Producto añadido al carrito"
-        />
+        >
+          <Alert
+    onClose={handleCloseSnackbar}
+    severity="success"
+    variant="filled"
+    sx={{ width: '100%' }}
+  >
+    Producto añadido al carrito
+  </Alert>
+  </Snackbar>
       </Container>
     </>
   );
