@@ -41,7 +41,10 @@ export const Carrito = () => {
 
   // Calcular el total de la compra
   const calcularTotal = () => {
-    return shoppingCart.reduce((total, item) => total + item.precio, 0).toFixed(2);
+    return shoppingCart.reduce((total, item) => {
+      const itemPrecio = parseFloat(item.precio);
+      return isNaN(itemPrecio) ? total : total + itemPrecio;
+    }, 0).toFixed(2);
   };
 
   if (!currentUser) {

@@ -62,7 +62,6 @@ export const NavBar = () => {
 
   const settings = [
     { id: 1, name: "Perfil", link: "/mi-perfil" },
-    { id: 2, name: "Mis Pedidos", link: "/mis-pedidos" },
     { id: 3, name: "Carrito", link: "/carrito" },
     { id: 4, name: "Cerrar sesión", onClick: handleLogout },
   ];
@@ -148,7 +147,6 @@ export const NavBar = () => {
                   <Tooltip>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Avatar
-                        alt="Remy Sharp"
                         src={auth.currentUser.photoURL}
                       />
                     </IconButton>

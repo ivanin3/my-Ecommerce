@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -18,8 +19,40 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
 
+const guardarTransaccionEnFirebase = async (transaccionData) => {
+  try {
+    const docRef = await addDoc(collection(db, 'transacciones'), transaccionData);
+    console.log('Transacción guardada con ID: ', docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error('Error al guardar la transacción: ', error);
+    throw error;
+  }
+};
+
+const obtenerPedidosDeUsuario = async (userId) => {
+  try {
+    const q = query(collection(db, 'transacciones'), where('usuario', '==', userId));
+    const querySnapshot = await getDocs(q);
+    const pedidos = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      productos: doc.data().productos,
+      precioTotal: doc.data().total,
+      metodoPago: doc.data().metodoPago
+    }));
+    return pedidos;
+  } catch (error) {
+    console.error('Error al obtener los pedidos del usuario:', error);
+    throw error;
+  }
+};
+
 export {
   db,
   storage,
   auth,
-}
+  guardarTransaccionEnFirebase,
+  obtenerPedidosDeUsuario
+};
+
+
