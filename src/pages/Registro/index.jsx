@@ -28,7 +28,7 @@ export default function Registro() {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      navigate("/"); // Redirigir a la página principal después del inicio de sesión con Google
+      navigate("/"); 
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
     }
@@ -44,7 +44,7 @@ export default function Registro() {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
-      bgcolor="#f0f2f5" // Cambia el color de fondo de la página
+      bgcolor="#f0f2f5" 
     >
       <Box
         component="form"
@@ -54,7 +54,7 @@ export default function Registro() {
           maxWidth: 400,
           p: 4,
           bgcolor: "#ffffff",
-          boxShadow: 24, // Aumenta la elevación del contenedor
+          boxShadow: 24, 
           borderRadius: 5,
         }}
       >

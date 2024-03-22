@@ -34,7 +34,6 @@ export default function Detalles() {
         />
         <Typography variant="body1" sx={{ marginTop: "20px", marginBottom: "10px" }}>Descripción: {product?.descripcion}</Typography>
         <Typography variant="body1" sx={{ marginBottom: "10px" }}>Precio: {product?.precio} €</Typography>
-        <Rating name="rating" value={product?.valoracion} precision={0.5} readOnly sx={{ marginBottom: "20px" }} />
         <Button
           variant="contained"
           color="primary"

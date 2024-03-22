@@ -1,24 +1,20 @@
-import { Outlet } from "react-router-dom";
-import { Container, Typography, Paper } from "@mui/material";
+import React from "react";
+import { Container, Typography, CircularProgress } from "@mui/material";
 
 export const Accesorios = () => {
-    return (
-        <Container
-        maxWidth="md"
-        sx={{
-          marginTop: "80px",
-          textAlign: "center",
-          backgroundColor: "#E3F2FD",
-          minHeight: "calc(100vh - 80px)",
-          padding: "20px",
-        }}
-      >
-            <Paper elevation={20} sx={{ p: 2 }}>
-                <Typography variant="h2" gutterBottom>
-                    ACCESORIOS
-                </Typography>
-            </Paper>
-            <Outlet />
-        </Container>
-    )
-}
+  return (
+    <Container style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", textAlign: "center" }}>
+      <img src="/public/construccion.png" alt="Logo" width="150" height="150" style={{ marginBottom: "20px" }} />
+      <Typography variant="h4" gutterBottom style={{ marginBottom: "10px" }}>
+        Sitio en Construcción
+      </Typography>
+      <Typography variant="body1" gutterBottom style={{ marginBottom: "20px" }}>
+        Estamos trabajando en mejorar tu experiencia. ¡Vuelve pronto!
+      </Typography>
+      <CircularProgress style={{ marginBottom: "20px" }} />
+      <Typography variant="caption" gutterBottom>
+        Cargando...
+      </Typography>
+    </Container>
+  );
+};

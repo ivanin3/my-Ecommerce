@@ -31,7 +31,7 @@ export const ResumenCompra = () => {
     ciudad: "",
   });
   const [camposIncompletos, setCamposIncompletos] = useState(false);
-  const [metodoPago, setMetodoPago] = useState(""); // Aquí se almacenará el método de pago seleccionado
+  const [metodoPago, setMetodoPago] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -48,13 +48,12 @@ export const ResumenCompra = () => {
     if (incompletos.length > 0) {
       setCamposIncompletos(true);
     } else {
-      // Dependiendo del método de pago seleccionado, dirigimos al usuario a la pasarela de pago correspondiente
+
       if (metodoPago === "paypal") {
         navigate("/pago-paypal");
       } else if (metodoPago === "tarjeta") {
         navigate("/pago-tarjeta");
       } else {
-        // Si no se ha seleccionado ningún método de pago, no hacemos nada
         console.log("Por favor, seleccione un método de pago.");
       }
     }

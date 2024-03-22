@@ -2,16 +2,16 @@ import React, { useContext, useState } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { MarketContext } from '../context/MarketProvider';
 import { useNavigate } from 'react-router-dom';
-import { guardarTransaccionEnFirebase } from '../config/firebase'; // Importa la función para guardar transacciones en Firebase
-import { AuthContext } from '../context/AuthProvider'; // Importa el contexto de autenticación de Firebase
+import { guardarTransaccionEnFirebase } from '../config/firebase'; 
+import { AuthContext } from '../context/AuthProvider'; 
 
 export function PagoTarjeta() {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const { shoppingCart, setShoppingCart } = useContext(MarketContext);
-  const { currentUser } = useContext(AuthContext); // Obtiene el usuario autenticado
-  const [compraExitosa, setCompraExitosa] = useState(false); // Estado para controlar el mensaje de compra exitosa
+  const { currentUser } = useContext(AuthContext); 
+  const [compraExitosa, setCompraExitosa] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -70,13 +70,13 @@ export function PagoTarjeta() {
     }}>
       <h2 style={{ marginBottom: '30px', color: '#333' }}>Pago con Tarjeta</h2>
       <div style={{ width: '500px', padding: '30px', backgroundColor: '#fff', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-        {/* Elemento de número de tarjeta */}
+       
         <label style={{ marginBottom: '10px', fontSize: '16px', color: '#333', display: 'block' }}>Número de Tarjeta</label>
         <CardNumberElement style={{ base: { fontSize: '16px', '::placeholder': { color: '#aab7c4' }, border: '1px solid #ccc', borderRadius: '5px', padding: '10px', width: '100%' } }} />
-        {/* Elemento de fecha de caducidad */}
+        
         <label style={{ marginBottom: '10px', fontSize: '16px', color: '#333', marginTop: '20px', display: 'block' }}>Fecha de Caducidad</label>
         <CardExpiryElement style={{ base: { fontSize: '16px', '::placeholder': { color: '#aab7c4' }, border: '1px solid #ccc', borderRadius: '5px', padding: '10px', width: '100%' } }} />
-        {/* Elemento de CVC */}
+        
         <label style={{ marginBottom: '10px', fontSize: '16px', color: '#333', marginTop: '20px', display: 'block' }}>CVC</label>
         <CardCvcElement style={{ base: { fontSize: '16px', '::placeholder': { color: '#aab7c4' }, border: '1px solid #ccc', borderRadius: '5px', padding: '10px', width: '100%' } }} />
         <button type="submit" onClick={handleSubmit} disabled={!stripe} style={{ padding: '15px 30px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', fontSize: '16px', cursor: 'pointer', outline: 'none', marginTop: '20px', width: '100%', textAlign: 'center' }}>

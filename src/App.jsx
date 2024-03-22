@@ -17,6 +17,7 @@ import { useAuth } from "./context/AuthProvider";
 import Detalles from "./pages/Detalles";
 import { ResumenCompra } from "./pages/ResumenCompra";
 import { PagoTarjeta } from "./pages/PagoTarjeta";
+import { PagoPaypal } from "./pages/PagoPaypal";
 import { MarketProvider } from "./context/MarketProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Elements } from "@stripe/react-stripe-js";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/detalles/:nombre" element={<Detalles />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/pago-tarjeta" element={<PagoTarjeta />} />
+            <Route path="/pago-paypal" element={<PagoPaypal />} />
           </Route>
         </Route>
       </Routes>
